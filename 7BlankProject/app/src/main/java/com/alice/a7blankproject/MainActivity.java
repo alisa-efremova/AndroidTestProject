@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.alice.a7blankproject.Message";
@@ -15,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.currency);
+        String[] currencies = getResources().getStringArray(R.array.currencies);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, currencies);
+        textView.setAdapter(adapter);
     }
 
     @Override
