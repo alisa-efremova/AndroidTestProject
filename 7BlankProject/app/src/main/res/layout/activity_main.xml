@@ -16,6 +16,40 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/edit_message"
         android:text="@string/button_send"
-        android:onClick="sendMessage" />
+        android:onClick="sendMessage"
+        android:id="@+id/send_button"/>
 
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/send_button"
+        android:layout_marginTop="15dp">
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login:"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter login"
+                />
+            <TextView android:text="Necessary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email:"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter email"/>
+        </TableRow>
+
+    </TableLayout>
 </RelativeLayout>
