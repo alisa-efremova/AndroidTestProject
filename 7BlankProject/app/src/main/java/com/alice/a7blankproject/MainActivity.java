@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.alice.a7blankproject.Message";
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.currency);
         String[] currencies = getResources().getStringArray(R.array.currencies);
