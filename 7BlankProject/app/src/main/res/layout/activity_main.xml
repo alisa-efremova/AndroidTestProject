@@ -130,6 +130,14 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+        <fragment
+            android:layout_below="@id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/contentFragment"
+            android:name="com.alice.a7blankproject.ProgressFragment" />
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
