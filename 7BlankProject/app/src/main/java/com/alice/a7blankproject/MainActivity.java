@@ -1,7 +1,9 @@
 package com.alice.a7blankproject;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 import java.util.Date;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -31,12 +34,21 @@ public class MainActivity extends AppCompatActivity {
     private static final String URL              = "http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx";
     private static final String NAMESPACE        = "http://web.cbr.ru/";
 
+    TextView tvInfo;
+    SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        tvInfo = (TextView) findViewById(R.id.tvInfo);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+        //startService(new Intent(this, MyService.class));
+
 
         AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.currency);
         String[] currencies = getResources().getStringArray(R.array.currencies);
@@ -47,22 +59,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        Boolean notif = sp.getBoolean("notif", false);
+        String address = sp.getString("address", "");
+        String text = "Notifications are "
+                + ((notif) ? "enabled, address = " + address : "disabled");
+        tvInfo.setText(text);
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //stopService(new Intent(this, MyService.class));
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            item.setIntent(new Intent(this, PrefActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -98,15 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
         SoapSerializationEnvelope soapEnvelop = new SoapSerializationEnvelope(SoapEnvelope.VER12);
         soapEnvelop.dotNet = true;
-
-        /*
-        soapEnvelop.setAddAdornments(false);
-        soapEnvelop.encodingStyle = SoapSerializationEnvelope.ENC;
-        soapEnvelop.env = SoapSerializationEnvelope.ENV;
-        soapEnvelop.implicitTypes = true;
-        */
-
         soapEnvelop.setOutputSoapObject(request);
+
         HttpTransportSE aht = new HttpTransportSE(URL);
         aht.debug = true;
 
