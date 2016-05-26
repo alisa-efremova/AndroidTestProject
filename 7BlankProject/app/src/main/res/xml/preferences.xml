@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <MultiSelectListPreference
+        android:key="currencies"
+        android:summary="@string/currencies"
+        android:title="@string/currencies_summary"
+        android:entries="@array/currencies"
+        android:entryValues="@array/currencies"
+        android:defaultValue="@array/currencies" />
+    <EditTextPreference
+        android:key="date_range"
+        android:summary="@string/date_interval_summary"
+        android:title="@string/date_interval"
+        android:defaultValue="7"
+        android:inputType="number" />
+</PreferenceScreen>

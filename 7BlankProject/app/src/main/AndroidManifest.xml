@@ -20,15 +20,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayMessageActivity"
-            android:label="@string/title_activity_display_message"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alice.a7blankproject.MainActivity" />
-        </activity>
-        <activity
             android:name=".PrefActivity"
             android:label="Preferences"
             android:theme="@style/AppTheme.NoActionBar">
