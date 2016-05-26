@@ -33,9 +33,9 @@ public class CurrentExchangeRatesFragment extends ListFragment {
     private static final String URL                = "http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx";
     private static final String NAMESPACE          = "http://web.cbr.ru/";
 
-    SharedPreferences preferences;
+    SharedPreferences mPreferences;
 
-    private CurrencyInfo[] currencies;
+    private CurrencyInfo[] mCurrencies;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class CurrentExchangeRatesFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class CurrentExchangeRatesFragment extends ListFragment {
     }
 
     private CurrencyInfo getModel(int position) {
-        return(((CurrencyInfoAdapter) getListAdapter()).getItem(position));
+        return (((CurrencyInfoAdapter) getListAdapter()).getItem(position));
     }
 
     class CurrencyInfoAdapter extends ArrayAdapter<CurrencyInfo> {
@@ -109,8 +109,8 @@ public class CurrentExchangeRatesFragment extends ListFragment {
         @Override
         protected void onPostExecute(CurrencyInfo[] currencyInfoArray) {
             Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
-            currencies = currencyInfoArray;
-            setListAdapter(new CurrencyInfoAdapter(currencies));
+            mCurrencies = currencyInfoArray;
+            setListAdapter(new CurrencyInfoAdapter(mCurrencies));
         }
     }
 
@@ -135,7 +135,7 @@ public class CurrentExchangeRatesFragment extends ListFragment {
             response = (SoapObject) response.getProperty(1);
             SoapObject currencyXmlInfoArray = (SoapObject) response.getProperty("ValuteData");
 
-            Set<String> preferredCurrencies = preferences.getStringSet("currencies", null);
+            Set<String> preferredCurrencies = mPreferences.getStringSet("currencies", null);
 
             for (int i = 0; i < currencyXmlInfoArray.getPropertyCount(); i++)
             {
