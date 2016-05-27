@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">7BlankProject</string>
+    <string name="app_title">Курс рубля</string>
     <string name="action_settings">Настройки</string>
     <string name="main_activity_title">Курс рубля ЦБ РФ</string>
+    <string name="exchange_rate_history_title">Динамика курса рубля (%1$s)</string>
     <string name="edit_message">Введите сообщение</string>
     <string name="button_send">Отправить</string>
     <string name="title_activity_display_message">DisplayMessageActivity</string>
@@ -12,5 +14,10 @@
     <string-array name="currencies">
         <item>USD</item>
         <item>EUR</item>
+        <item>GBP</item>
+        <item>JPY</item>
+        <item>AUD</item>
+        <item>CAD</item>
     </string-array>
+    <string name="title_activity_exchange_rate_history">ExchangeRateHistoryActivity</string>
 </resources>
