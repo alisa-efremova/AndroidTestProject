@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -68,6 +69,7 @@ public class ExchangeRateFragment extends Fragment {
         @Override
         protected void onPostExecute(List<ExchangeRateByDate> exchangeRateInfo) {
             Toast.makeText(getActivity(), "Данные обновлены (период)", Toast.LENGTH_SHORT).show();
+            Collections.reverse(exchangeRateInfo);
 
             if (mView instanceof RecyclerView) {
                 RecyclerView recyclerView = (RecyclerView) mView;

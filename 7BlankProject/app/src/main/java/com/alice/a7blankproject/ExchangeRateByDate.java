@@ -2,7 +2,7 @@ package com.alice.a7blankproject;
 
 import java.util.Date;
 
-public class ExchangeRateByDate {
+public class ExchangeRateByDate implements Comparable {
     private Date mDate;
     private String mExchangeRate;
 
@@ -17,5 +17,10 @@ public class ExchangeRateByDate {
 
     public String getExchangeRate() {
         return mExchangeRate;
+    }
+
+    public int compareTo(Object compareToObject)
+    {
+        return ((ExchangeRateByDate) compareToObject).getDate().compareTo(mDate);
     }
 }
