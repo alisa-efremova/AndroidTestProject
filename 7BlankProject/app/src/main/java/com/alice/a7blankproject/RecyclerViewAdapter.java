@@ -9,19 +9,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class RecyclerViewAdapter
-        extends RecyclerView.Adapter
-        <RecyclerViewAdapter.ListItemViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ListItemViewHolder> {
 
-    private List<Model> items;
-    private SparseBooleanArray selectedItems;
+    private List<Model> mItems;
+    private SparseBooleanArray mSelectedItems;
 
     RecyclerViewAdapter(List<Model> modelData) {
         if (modelData == null) {
             throw new IllegalArgumentException("modelData must not be null");
         }
-        items = modelData;
-        selectedItems = new SparseBooleanArray();
+        mItems = modelData;
+        mSelectedItems = new SparseBooleanArray();
     }
 
     @Override
@@ -34,15 +32,15 @@ public class RecyclerViewAdapter
 
     @Override
     public void onBindViewHolder(ListItemViewHolder viewHolder, int position) {
-        Model model = items.get(position);
+        Model model = mItems.get(position);
         viewHolder.name.setText(String.valueOf(model.name));
         viewHolder.age.setText(String.valueOf(model.age));
-        viewHolder.itemView.setActivated(selectedItems.get(position, false));
+        viewHolder.itemView.setActivated(mSelectedItems.get(position, false));
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return mItems.size();
     }
 
     public final static class ListItemViewHolder extends RecyclerView.ViewHolder {

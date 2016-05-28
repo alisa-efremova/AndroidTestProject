@@ -48,7 +48,7 @@ public class ExchangeRateFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_exchange_rate_list, container, false);
 
-        ArrayList<Model> demoData = new ArrayList<Model>();
+        ArrayList<Model> demoData = new ArrayList<>();
         char c = 'A';
         for (byte i = 0; i < 20; i++) {
             Model model = new Model();
