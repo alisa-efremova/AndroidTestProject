@@ -9,7 +9,7 @@
         android:entryValues="@array/currencies"
         android:defaultValue="@array/currencies" />
     <EditTextPreference
-        android:key="date_range"
+        android:key="period"
         android:summary="@string/date_interval_summary"
         android:title="@string/date_interval"
         android:defaultValue="7"

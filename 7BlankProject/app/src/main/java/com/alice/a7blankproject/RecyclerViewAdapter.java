@@ -11,10 +11,10 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ListItemViewHolder> {
 
-    private List<Model> mItems;
+    private List<ExchangeRateByDate> mItems;
     private SparseBooleanArray mSelectedItems;
 
-    RecyclerViewAdapter(List<Model> modelData) {
+    RecyclerViewAdapter(List<ExchangeRateByDate> modelData) {
         if (modelData == null) {
             throw new IllegalArgumentException("modelData must not be null");
         }
@@ -32,9 +32,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ListItemViewHolder viewHolder, int position) {
-        Model model = mItems.get(position);
-        viewHolder.name.setText(String.valueOf(model.name));
-        viewHolder.age.setText(String.valueOf(model.age));
+        ExchangeRateByDate model = mItems.get(position);
+        viewHolder.date.setText(TimeUtils.formatDate(model.getDate(), TimeUtils.DATE_PATTERN_SHORT));
+        viewHolder.exchangeRate.setText(model.getExchangeRate());
         viewHolder.itemView.setActivated(mSelectedItems.get(position, false));
     }
 
@@ -44,13 +44,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public final static class ListItemViewHolder extends RecyclerView.ViewHolder {
-        TextView name;
-        TextView age;
+        TextView date;
+        TextView exchangeRate;
 
         public ListItemViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.id);
-            age = (TextView) itemView.findViewById(R.id.content);
+            date         = (TextView) itemView.findViewById(R.id.id);
+            exchangeRate = (TextView) itemView.findViewById(R.id.content);
         }
     }
 }
