@@ -12,7 +12,7 @@ public final class TimeUtils {
     public static final String DATE_PATTERN_SHORT_DATE = "dd.MM.yyyy";
     public static final String DATE_PATTERN_SHORT_DATETIME = "dd.MM.yyyy HH:mm";
 
-    public static final String DEFAULT_TIMEZONE = "UTC";
+    public static final String DEFAULT_TIMEZONE = "GMT+03:00";
 
     public static String getSoapDateString(Date dt) {
         TimeZone tz = TimeZone.getTimeZone(DEFAULT_TIMEZONE);

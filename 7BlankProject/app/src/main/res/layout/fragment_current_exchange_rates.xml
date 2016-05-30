@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/currency_name"
-        android:layout_width="120dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:padding="5dp"

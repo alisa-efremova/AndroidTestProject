@@ -52,8 +52,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ListItemViewHolder(View itemView) {
             super(itemView);
-            date         = (TextView) itemView.findViewById(R.id.id);
-            exchangeRate = (TextView) itemView.findViewById(R.id.content);
+            date         = (TextView) itemView.findViewById(R.id.date);
+            exchangeRate = (TextView) itemView.findViewById(R.id.exchange_rate);
         }
     }
 }
