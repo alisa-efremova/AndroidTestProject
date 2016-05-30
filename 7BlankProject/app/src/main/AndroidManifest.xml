@@ -16,7 +16,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -24,7 +23,14 @@
             android:name=".PrefActivity"
             android:label="Preferences"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ExchangeRateHistoryActivity"></activity>
+        <activity
+            android:name=".ExchangeRateHistoryActivity"
+            android:label="@string/app_title"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".NewsDetailsActivity"
+            android:label="@string/app_title"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -1,10 +1,13 @@
 package com.alice.a7blankproject;
 
+        import android.content.Context;
+        import android.content.Intent;
         import android.support.v7.widget.RecyclerView;
         import android.util.SparseBooleanArray;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.AdapterView;
         import android.widget.TextView;
 
         import com.alice.a7blankproject.Model.News;
@@ -16,13 +19,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ListItemViewHo
 
     private List<News> mItems;
     private SparseBooleanArray mSelectedItems;
+    private Context mContext;
 
-    NewsAdapter(List<News> modelData) {
+    NewsAdapter(List<News> modelData, Context context) {
         if (modelData == null) {
             throw new IllegalArgumentException("modelData must not be null");
         }
         mItems = modelData;
         mSelectedItems = new SparseBooleanArray();
+        mContext = context;
     }
 
     @Override
@@ -30,15 +35,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ListItemViewHo
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
                 inflate(R.layout.fragment_news_list_item, viewGroup, false);
+
         return new ListItemViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ListItemViewHolder viewHolder, int position) {
+    public void onBindViewHolder(final ListItemViewHolder viewHolder, final int position) {
         News model = mItems.get(position);
         viewHolder.date.setText(TimeUtils.formatDate(model.getDate(), TimeUtils.DATE_PATTERN_SHORT_DATETIME));
         viewHolder.title.setText(model.getTitle());
         viewHolder.itemView.setActivated(mSelectedItems.get(position, false));
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                News model = mItems.get(position);
+                Intent intent = new Intent(mContext, NewsDetailsActivity.class);
+                intent.putExtra(NewsDetailsFragment.EXTRA_PARAM_URL, model.getUrl());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

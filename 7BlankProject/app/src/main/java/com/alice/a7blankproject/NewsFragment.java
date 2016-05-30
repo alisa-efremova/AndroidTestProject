@@ -63,7 +63,7 @@ public class NewsFragment extends Fragment {
 
             if (mView instanceof RecyclerView) {
                 RecyclerView recyclerView = (RecyclerView) mView;
-                recyclerView.setAdapter(new NewsAdapter(news));
+                recyclerView.setAdapter(new NewsAdapter(news, getActivity()));
             }
         }
     }
