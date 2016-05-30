@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alice.a7blankproject.Model.ExchangeRateByDate;
+import com.alice.a7blankproject.Util.TimeUtils;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ListItemViewHolder> {
@@ -34,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ListItemViewHolder viewHolder, int position) {
         ExchangeRateByDate model = mItems.get(position);
         viewHolder.date.setText(TimeUtils.formatDate(model.getDate(), TimeUtils.DATE_PATTERN_SHORT));
-        viewHolder.exchangeRate.setText(model.getExchangeRate());
+        viewHolder.exchangeRate.setText(Double.toString(model.getExchangeRate()));
         viewHolder.itemView.setActivated(mSelectedItems.get(position, false));
     }
 

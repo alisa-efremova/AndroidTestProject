@@ -5,12 +5,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.alice.a7blankproject.Model.CbrDataManager;
+import com.alice.a7blankproject.Model.CurrencyInfo;
+import com.alice.a7blankproject.Model.News;
+import com.alice.a7blankproject.Util.TimeUtils;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CurrentExchangeRatesFragment extends ListFragment {
@@ -48,8 +57,15 @@ public class CurrentExchangeRatesFragment extends ListFragment {
     class LoadCurrentExchangeRatesTask extends AsyncTask<String, Void, CurrencyInfo[]> {
         @Override
         protected CurrencyInfo[] doInBackground(String... path) {
-            Set<String> preferredCurrencies = mPreferences.getStringSet("currencies", null);
-            return CbrDataManager.getExchangeRatesByDate(new Date(), preferredCurrencies);
+            Set<String> preferredCurrencies = mPreferences.getStringSet("currencies", new HashSet<String>());
+
+            List<News> news = CbrDataManager.getNews(TimeUtils.addToDate(new Date(), -7), new Date());
+            Log.i("Alicetest", "news: " + news.toString());
+
+            List<CurrencyInfo> currencyInfoList = CbrDataManager.getExchangeRatesByDate(new Date(), preferredCurrencies);
+            CurrencyInfo[] currencyInfoArray = new CurrencyInfo[currencyInfoList.size()];
+            currencyInfoList.toArray(currencyInfoArray);
+            return currencyInfoArray;
         }
 
         @Override

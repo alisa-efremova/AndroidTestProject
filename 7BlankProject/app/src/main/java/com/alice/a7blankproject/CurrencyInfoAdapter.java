@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.alice.a7blankproject.Model.CurrencyInfo;
+
 class CurrencyInfoAdapter extends ArrayAdapter<CurrencyInfo> {
 
     private LayoutInflater mInflater;

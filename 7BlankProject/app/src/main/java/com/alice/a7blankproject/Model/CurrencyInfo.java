@@ -1,4 +1,4 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.Model;
 
 public class CurrencyInfo {
     private String code;
@@ -6,8 +6,8 @@ public class CurrencyInfo {
     private double exchangeRate;
 
     public CurrencyInfo(String code, String name, double exchangeRate) {
-        this.code = code;
-        this.name = name;
+        this.code = code.trim();
+        this.name = name.trim();
         this.exchangeRate = exchangeRate;
     }
 
@@ -21,5 +21,12 @@ public class CurrencyInfo {
 
     public double getExchangeRate() {
         return this.exchangeRate;
+    }
+
+    @Override
+    public String toString() {
+        return getCode() + " ("
+                + getName() + "): "
+                + getExchangeRate();
     }
 }

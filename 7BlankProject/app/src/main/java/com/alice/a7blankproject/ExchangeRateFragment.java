@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alice.a7blankproject.Model.CbrDataManager;
+import com.alice.a7blankproject.Model.ExchangeRateByDate;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;

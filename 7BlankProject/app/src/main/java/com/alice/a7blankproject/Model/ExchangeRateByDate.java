@@ -1,12 +1,14 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.Model;
+
+import com.alice.a7blankproject.Util.TimeUtils;
 
 import java.util.Date;
 
 public class ExchangeRateByDate implements Comparable {
     private Date mDate;
-    private String mExchangeRate;
+    private double mExchangeRate;
 
-    public ExchangeRateByDate(Date date, String exchangeRate) {
+    public ExchangeRateByDate(Date date, double exchangeRate) {
         mDate         = date;
         mExchangeRate = exchangeRate;
     }
@@ -15,12 +17,17 @@ public class ExchangeRateByDate implements Comparable {
         return mDate;
     }
 
-    public String getExchangeRate() {
+    public double getExchangeRate() {
         return mExchangeRate;
     }
 
     public int compareTo(Object compareToObject)
     {
         return ((ExchangeRateByDate) compareToObject).getDate().compareTo(mDate);
+    }
+
+    @Override
+    public String toString() {
+        return TimeUtils.formatDate(getDate(), TimeUtils.DATE_PATTERN_SHORT) + " " + getExchangeRate();
     }
 }
