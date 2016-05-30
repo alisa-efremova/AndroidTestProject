@@ -9,7 +9,8 @@ import java.util.TimeZone;
 
 public final class TimeUtils {
     public static final String DATE_PATTERN_ISO_1806 = "yyyy-MM-dd'T'HH:mm:ss";
-    public static final String DATE_PATTERN_SHORT    = "dd.MM.yyyy";
+    public static final String DATE_PATTERN_SHORT_DATE = "dd.MM.yyyy";
+    public static final String DATE_PATTERN_SHORT_DATETIME = "dd.MM.yyyy HH:mm";
 
     public static final String DEFAULT_TIMEZONE = "UTC";
 

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:name="com.alice.a7blankproject.ExchangeRateFragment"
+    android:name="com.alice.a7blankproject.NewsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.alice.a7blankproject.ExchangeRateFragment"
-    tools:listitem="@layout/fragment_exchange_rate_list_item" />
+    tools:context="com.alice.a7blankproject.NewsFragment"
+    tools:listitem="@layout/fragment_news_list_item" />

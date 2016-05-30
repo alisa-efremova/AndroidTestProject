@@ -28,6 +28,6 @@ public class ExchangeRateByDate implements Comparable {
 
     @Override
     public String toString() {
-        return TimeUtils.formatDate(getDate(), TimeUtils.DATE_PATTERN_SHORT) + " " + getExchangeRate();
+        return TimeUtils.formatDate(getDate(), TimeUtils.DATE_PATTERN_SHORT_DATE) + " " + getExchangeRate();
     }
 }

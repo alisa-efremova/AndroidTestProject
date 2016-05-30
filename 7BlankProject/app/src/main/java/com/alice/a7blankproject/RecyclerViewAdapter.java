@@ -29,14 +29,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.fragment_exchange_rate, viewGroup, false);
+                inflate(R.layout.fragment_exchange_rate_list_item, viewGroup, false);
         return new ListItemViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ListItemViewHolder viewHolder, int position) {
         ExchangeRateByDate model = mItems.get(position);
-        viewHolder.date.setText(TimeUtils.formatDate(model.getDate(), TimeUtils.DATE_PATTERN_SHORT));
+        viewHolder.date.setText(TimeUtils.formatDate(model.getDate(), TimeUtils.DATE_PATTERN_SHORT_DATE));
         viewHolder.exchangeRate.setText(Double.toString(model.getExchangeRate()));
         viewHolder.itemView.setActivated(mSelectedItems.get(position, false));
     }

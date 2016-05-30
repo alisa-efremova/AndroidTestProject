@@ -29,7 +29,7 @@ public class News {
 
     @Override
     public String toString() {
-        return TimeUtils.formatDate(getDate(), TimeUtils.DATE_PATTERN_SHORT) + " "
+        return TimeUtils.formatDate(getDate(), TimeUtils.DATE_PATTERN_SHORT_DATE) + " "
                 + getTitle() + " ("
                 + getUrl() + ")";
     }

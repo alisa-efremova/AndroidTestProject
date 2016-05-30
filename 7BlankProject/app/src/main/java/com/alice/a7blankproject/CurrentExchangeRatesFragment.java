@@ -59,9 +59,6 @@ public class CurrentExchangeRatesFragment extends ListFragment {
         protected CurrencyInfo[] doInBackground(String... path) {
             Set<String> preferredCurrencies = mPreferences.getStringSet("currencies", new HashSet<String>());
 
-            List<News> news = CbrDataManager.getNews(TimeUtils.addToDate(new Date(), -7), new Date());
-            Log.i("Alicetest", "news: " + news.toString());
-
             List<CurrencyInfo> currencyInfoList = CbrDataManager.getExchangeRatesByDate(new Date(), preferredCurrencies);
             CurrencyInfo[] currencyInfoArray = new CurrencyInfo[currencyInfoList.size()];
             currencyInfoList.toArray(currencyInfoArray);
