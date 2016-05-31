@@ -1,5 +1,7 @@
 package com.alice.a7blankproject.util;
 
+import android.support.annotation.Nullable;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +10,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public final class TimeUtils {
-    public static final String DATE_PATTERN_ISO_1806 = "yyyy-MM-dd'T'HH:mm:ss";
+    public static final String DATE_PATTERN_ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss";
     public static final String DATE_PATTERN_SHORT_DATE = "dd.MM.yyyy";
     public static final String DATE_PATTERN_SHORT_DATETIME = "dd.MM.yyyy HH:mm";
 
@@ -16,14 +18,14 @@ public final class TimeUtils {
 
     public static String getSoapDateString(Date dt) {
         TimeZone tz = TimeZone.getTimeZone(DEFAULT_TIMEZONE);
-        DateFormat df = new SimpleDateFormat(DATE_PATTERN_ISO_1806);
+        DateFormat df = new SimpleDateFormat(DATE_PATTERN_ISO_8601);
         df.setTimeZone(tz);
-        String nowAsISO = df.format(dt);
-        return nowAsISO;
+        return df.format(dt);
     }
 
+    @Nullable
     public static Date parseSoapDate(String dateStr) {
-        DateFormat format = new SimpleDateFormat(DATE_PATTERN_ISO_1806);
+        DateFormat format = new SimpleDateFormat(DATE_PATTERN_ISO_8601);
         try {
             return format.parse(dateStr);
         }

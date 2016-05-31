@@ -32,14 +32,15 @@ public class PrefActivity extends PreferenceActivity {
         public void onCreate(final Bundle savedInstanceState)
         {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(com.alice.a7blankproject.R.xml.preferences);
+            addPreferencesFromResource(R.xml.preferences);
 
             findPreference(PREFERENCE_PERIOD).setOnPreferenceChangeListener(
                     new Preference.OnPreferenceChangeListener() {
 
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    int period = Integer.parseInt((String) newValue);
+                    String periodStr = (String) newValue;
+                    int period = !periodStr.isEmpty() ? Integer.parseInt(periodStr) : 0;
                     if (period < MIN_DATE_INTERVAL || period > MAX_DATE_INTERVAL) {
                         Toast toast = Toast.makeText(
                                 getActivity(),

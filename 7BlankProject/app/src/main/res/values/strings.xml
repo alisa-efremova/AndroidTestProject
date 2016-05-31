@@ -5,7 +5,9 @@
     <string name="activity_name_exchange_rate_dynamics">Динамика курса рубля</string>
     <string name="activity_name_news_details">Новости ЦБ РФ</string>
     <string name="main_activity_title">Курс рубля ЦБ РФ</string>
-    <string name="exchange_rate_dynamics_title">Динамика курса рубля (%1$s)</string>
+    <string name="news_title">"Новости"</string>
+    <string name="exchange_rate_dynamics_title">%1$s</string>
+    <string name="empty">Нет данных</string>
     <string name="currencies">Список валют</string>
     <string name="currencies_summary">Выберите интересующие вас валюты</string>
     <string name="date_interval">Период загрузки данных</string>

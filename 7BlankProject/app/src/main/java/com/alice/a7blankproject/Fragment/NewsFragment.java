@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.alice.a7blankproject.adapter.NewsAdapter;
 import com.alice.a7blankproject.model.CbrDataManager;
@@ -21,9 +20,6 @@ import java.util.List;
 public class NewsFragment extends Fragment {
 
     private View mView;
-
-    public NewsFragment() {
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +34,7 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mView = inflater.inflate(com.alice.a7blankproject.R.layout.fragment_news_list, container, false);
+        mView = inflater.inflate(com.alice.a7blankproject.R.layout.list_news, container, false);
         new LoadNewsTask().execute();
         return mView;
     }
@@ -53,8 +49,6 @@ public class NewsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<News> news) {
-            Toast.makeText(getActivity(), "Новости обновлены", Toast.LENGTH_SHORT).show();
-
             if (mView instanceof RecyclerView) {
                 RecyclerView recyclerView = (RecyclerView) mView;
                 recyclerView.setAdapter(new NewsAdapter(news, getActivity()));

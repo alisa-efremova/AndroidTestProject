@@ -12,9 +12,6 @@ public class NewsDetailsFragment extends WebViewFragment {
 
     private String mUrl;
 
-    public NewsDetailsFragment() {
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

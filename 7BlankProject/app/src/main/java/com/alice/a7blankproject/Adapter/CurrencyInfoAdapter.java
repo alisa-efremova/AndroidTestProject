@@ -15,7 +15,7 @@ public class CurrencyInfoAdapter extends ArrayAdapter<CurrencyInfo> {
     private CurrencyInfo[] mCurrencies;
 
     public CurrencyInfoAdapter(CurrencyInfo[] list, Context context) {
-        super(context, com.alice.a7blankproject.R.layout.fragment_current_exchange_rates, list);
+        super(context, com.alice.a7blankproject.R.layout.list_item_current_exchange_rate, list);
         mInflater = LayoutInflater.from(context);
         mCurrencies = list;
     }
@@ -23,16 +23,16 @@ public class CurrencyInfoAdapter extends ArrayAdapter<CurrencyInfo> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        View row = convertView;
-        if (row == null) {
-            row = mInflater.inflate(com.alice.a7blankproject.R.layout.fragment_current_exchange_rates, parent, false);
+        View itemView = convertView;
+        if (itemView == null) {
+            itemView = mInflater.inflate(com.alice.a7blankproject.R.layout.list_item_current_exchange_rate, parent, false);
             holder = new ViewHolder();
-            holder.nameView = (TextView) row.findViewById(com.alice.a7blankproject.R.id.currency_name);
-            holder.exchangeRateView = (TextView) row.findViewById(com.alice.a7blankproject.R.id.exchange_rate);
-            row.setTag(holder);
+            holder.nameView         = (TextView) itemView.findViewById(com.alice.a7blankproject.R.id.currency_name);
+            holder.exchangeRateView = (TextView) itemView.findViewById(com.alice.a7blankproject.R.id.exchange_rate);
+            itemView.setTag(holder);
         }
         else {
-            holder = (ViewHolder) row.getTag();
+            holder = (ViewHolder) itemView.getTag();
         }
 
         CurrencyInfo currencyInfo = mCurrencies[position];
@@ -40,7 +40,7 @@ public class CurrencyInfoAdapter extends ArrayAdapter<CurrencyInfo> {
         holder.nameView.setText(currencyInfo.getName());
         holder.exchangeRateView.setText(Double.toString(currencyInfo.getExchangeRate()));
 
-        return row;
+        return itemView;
     }
 
     class ViewHolder {

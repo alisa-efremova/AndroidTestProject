@@ -11,10 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alice.a7blankproject.activity.PrefActivity;
-import com.alice.a7blankproject.adapter.RecyclerViewAdapter;
+import com.alice.a7blankproject.adapter.ExchangeRatesAdapter;
 import com.alice.a7blankproject.activity.ExchangeRateDynamicsActivity;
 import com.alice.a7blankproject.model.CbrDataManager;
 import com.alice.a7blankproject.model.ExchangeRateByDate;
@@ -29,9 +28,6 @@ public class ExchangeRateFragment extends Fragment {
     private String mCurrencyCode = "USD";
     private View mView;
     SharedPreferences mPreferences;
-
-    public ExchangeRateFragment() {
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +44,6 @@ public class ExchangeRateFragment extends Fragment {
             mCurrencyCode = extras.getString(ExchangeRateDynamicsActivity.CURRENCY_CODE);
         }
 
-        //todo: move to activity?
         String title = getResources().getString(com.alice.a7blankproject.R.string.exchange_rate_dynamics_title, mCurrencyCode);
         TextView textView = (TextView) getActivity().findViewById(com.alice.a7blankproject.R.id.historyTitle);
         textView.setText(title);
@@ -57,7 +52,7 @@ public class ExchangeRateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mView = inflater.inflate(com.alice.a7blankproject.R.layout.fragment_exchange_rate_list, container, false);
+        mView = inflater.inflate(com.alice.a7blankproject.R.layout.list_exchange_rate, container, false);
         new LoadCurrentExchangeRatesTask().execute();
         return mView;
     }
@@ -73,12 +68,10 @@ public class ExchangeRateFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<ExchangeRateByDate> exchangeRateInfo) {
-            Toast.makeText(getActivity(), "Данные обновлены (период)", Toast.LENGTH_SHORT).show();
-            Collections.reverse(exchangeRateInfo);
-
             if (mView instanceof RecyclerView) {
+                Collections.reverse(exchangeRateInfo);
                 RecyclerView recyclerView = (RecyclerView) mView;
-                recyclerView.setAdapter(new RecyclerViewAdapter(exchangeRateInfo));
+                recyclerView.setAdapter(new ExchangeRatesAdapter(exchangeRateInfo));
             }
         }
     }

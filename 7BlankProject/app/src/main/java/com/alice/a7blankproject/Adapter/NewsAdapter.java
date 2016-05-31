@@ -1,33 +1,30 @@
 package com.alice.a7blankproject.adapter;
 
-        import android.content.Context;
-        import android.content.Intent;
-        import android.support.v7.widget.RecyclerView;
-        import android.util.SparseBooleanArray;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.TextView;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-        import com.alice.a7blankproject.model.News;
-        import com.alice.a7blankproject.activity.NewsDetailsActivity;
-        import com.alice.a7blankproject.fragment.NewsDetailsFragment;
-        import com.alice.a7blankproject.util.TimeUtils;
+import com.alice.a7blankproject.model.News;
+import com.alice.a7blankproject.activity.NewsDetailsActivity;
+import com.alice.a7blankproject.fragment.NewsDetailsFragment;
+import com.alice.a7blankproject.util.TimeUtils;
 
-        import java.util.List;
+import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ListItemViewHolder> {
 
     private List<News> mItems;
-    private SparseBooleanArray mSelectedItems;
     private Context mContext;
 
-    public NewsAdapter(List<News> modelData, Context context) {
-        if (modelData == null) {
+    public NewsAdapter(List<News> newsList, Context context) {
+        if (newsList == null) {
             throw new IllegalArgumentException("modelData must not be null");
         }
-        mItems = modelData;
-        mSelectedItems = new SparseBooleanArray();
+        mItems = newsList;
         mContext = context;
     }
 
@@ -35,7 +32,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ListItemViewHo
     public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(com.alice.a7blankproject.R.layout.fragment_news_list_item, viewGroup, false);
+                inflate(com.alice.a7blankproject.R.layout.list_item_news, viewGroup, false);
 
         return new ListItemViewHolder(itemView);
     }
@@ -45,7 +42,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ListItemViewHo
         News model = mItems.get(position);
         viewHolder.date.setText(TimeUtils.formatDate(model.getDate(), TimeUtils.DATE_PATTERN_SHORT_DATETIME));
         viewHolder.title.setText(model.getTitle());
-        viewHolder.itemView.setActivated(mSelectedItems.get(position, false));
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

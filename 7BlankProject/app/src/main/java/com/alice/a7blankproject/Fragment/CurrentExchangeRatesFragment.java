@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.os.AsyncTask;
+import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.alice.a7blankproject.R;
 import com.alice.a7blankproject.activity.PrefActivity;
 import com.alice.a7blankproject.adapter.CurrencyInfoAdapter;
 import com.alice.a7blankproject.activity.ExchangeRateDynamicsActivity;
@@ -23,23 +25,24 @@ import java.util.Set;
 
 public class CurrentExchangeRatesFragment extends ListFragment {
 
-    SharedPreferences mPreferences;
-    CurrencyInfo[] mCurrencies;
+    private SharedPreferences mPreferences;
+    private CurrencyInfo[] mCurrencies;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        PreferenceManager.setDefaultValues(getActivity(), com.alice.a7blankproject.R.xml.preferences, false);
+        PreferenceManager.setDefaultValues(getActivity(), R.xml.preferences, false);
         mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_current_exchange_rates, null);
     }
 
+    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         CurrencyInfo currencyInfo = mCurrencies[position];
@@ -67,7 +70,6 @@ public class CurrentExchangeRatesFragment extends ListFragment {
 
         @Override
         protected void onPostExecute(CurrencyInfo[] currencyInfoArray) {
-            Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
             mCurrencies = currencyInfoArray;
             setListAdapter(new CurrencyInfoAdapter(currencyInfoArray, getActivity()));
         }

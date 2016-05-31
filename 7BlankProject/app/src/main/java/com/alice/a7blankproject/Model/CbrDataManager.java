@@ -1,5 +1,6 @@
 package com.alice.a7blankproject.model;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.alice.a7blankproject.util.TimeUtils;
@@ -45,6 +46,8 @@ public class CbrDataManager {
     private static final String SOAP_RESULT_NEWS_DATE          = "DocDate";
     private static final String SOAP_RESULT_TITLE              = "Title";
     private static final String SOAP_RESULT_URL                = "Url";
+    
+    private static final String LOG_TAG = "Soap_service";
 
     private Map<String, String> mCurrencyIds = new HashMap<>();
 
@@ -64,12 +67,17 @@ public class CbrDataManager {
 
         List<CurrencyInfo> currencyInfoList = new ArrayList<>();
         for (int i = 0; i < currencyXmlInfoArray.getPropertyCount(); i++) {
-            SoapObject currencyXmlInfo = (SoapObject) currencyXmlInfoArray.getProperty(i);
-            String currencyCode = currencyXmlInfo.getPropertyAsString(SOAP_RESULT_CURRENCY_CODE);
-            if (preferredCurrencies.contains(currencyCode)) {
-                String currencyName = currencyXmlInfo.getPropertyAsString(SOAP_RESULT_CURRENCY_NAME);
-                Double exchangeRate = Double.parseDouble(currencyXmlInfo.getPropertyAsString(SOAP_RESULT_EXCHANGE_RATE));
-                currencyInfoList.add(new CurrencyInfo(currencyCode, currencyName, exchangeRate));
+            try {
+                SoapObject currencyXmlInfo = (SoapObject) currencyXmlInfoArray.getProperty(i);
+                String currencyCode = currencyXmlInfo.getPropertyAsString(SOAP_RESULT_CURRENCY_CODE);
+                if (preferredCurrencies.contains(currencyCode)) {
+                    String currencyName = currencyXmlInfo.getPropertyAsString(SOAP_RESULT_CURRENCY_NAME);
+                    Double exchangeRate = Double.parseDouble(currencyXmlInfo.getPropertyAsString(SOAP_RESULT_EXCHANGE_RATE));
+                    currencyInfoList.add(new CurrencyInfo(currencyCode, currencyName, exchangeRate));
+                }
+            }
+            catch (Exception e) {
+                Log.i(LOG_TAG, "Exception: " + e.toString());    
             }
         }
 
@@ -89,12 +97,17 @@ public class CbrDataManager {
 
         List<News> newsList = new ArrayList<>();
         for (int i = 0; i < xmlArr.getPropertyCount(); i++) {
-            SoapObject newsInfo = (SoapObject) xmlArr.getProperty(i);
+            try {
+                SoapObject newsInfo = (SoapObject) xmlArr.getProperty(i);
 
-            Date date    = TimeUtils.parseSoapDate(newsInfo.getPropertyAsString(SOAP_RESULT_NEWS_DATE));
-            String title = newsInfo.getPropertyAsString(SOAP_RESULT_TITLE);
-            String url   = newsInfo.getPropertyAsString(SOAP_RESULT_URL);
-            newsList.add(new News(date, title, url));
+                Date date    = TimeUtils.parseSoapDate(newsInfo.getPropertyAsString(SOAP_RESULT_NEWS_DATE));
+                String title = newsInfo.getPropertyAsString(SOAP_RESULT_TITLE);
+                String url   = newsInfo.getPropertyAsString(SOAP_RESULT_URL);
+                newsList.add(new News(date, title, url));
+            }
+            catch (Exception e) {
+                Log.i(LOG_TAG, "Exception: " + e.toString());
+            }
         }
 
         return newsList;
@@ -113,11 +126,16 @@ public class CbrDataManager {
 
         List<ExchangeRateByDate> exchangeRateList = new ArrayList<>();
         for (int i = 0; i < xmlArr.getPropertyCount(); i++) {
-            SoapObject exchangeRateInfo = (SoapObject) xmlArr.getProperty(i);
+            try {
+                SoapObject exchangeRateInfo = (SoapObject) xmlArr.getProperty(i);
 
-            String date         = exchangeRateInfo.getPropertyAsString(SOAP_RESULT_DATE);
-            double exchangeRate = Double.parseDouble(exchangeRateInfo.getPropertyAsString(SOAP_RESULT_EXCHANGE_RATE));
-            exchangeRateList.add(new ExchangeRateByDate(TimeUtils.parseSoapDate(date), exchangeRate));
+                String date         = exchangeRateInfo.getPropertyAsString(SOAP_RESULT_DATE);
+                double exchangeRate = Double.parseDouble(exchangeRateInfo.getPropertyAsString(SOAP_RESULT_EXCHANGE_RATE));
+                exchangeRateList.add(new ExchangeRateByDate(TimeUtils.parseSoapDate(date), exchangeRate));
+            }
+            catch (Exception e) {
+                Log.i(LOG_TAG, "Exception: " + e.toString());
+            }
         }
 
         return exchangeRateList;
@@ -133,9 +151,8 @@ public class CbrDataManager {
         }
 
         for (int i = 0; i < xmlArr.getPropertyCount(); i++) {
-            SoapObject currencyXmlInfo = (SoapObject) xmlArr.getProperty(i);
-
             try {
+                SoapObject currencyXmlInfo = (SoapObject) xmlArr.getProperty(i);
                 String currencyCode = currencyXmlInfo.getPropertyAsString(SOAP_RESULT_ENUM_CURRENCY_CODE);
 
                 if (currencies.contains(currencyCode)) {
@@ -144,11 +161,12 @@ public class CbrDataManager {
                 }
             }
             catch (Exception e) {
-                Log.i("Check_Soap_Service", "Exception : " + e.toString());
+                Log.i(LOG_TAG, "Exception: " + e.toString());
             }
         }
     }
 
+    @Nullable
     private static SoapObject soapRequest(String methodName, Map<String, String> parameters, String tableName) {
         SoapObject request = new SoapObject(NAMESPACE, methodName);
 
@@ -169,7 +187,7 @@ public class CbrDataManager {
 
             SoapObject response = (SoapObject) soapEnvelop.getResponse();
             if (response == null) {
-                Log.i("Check_Soap_Service", "Response is null");
+                Log.i(LOG_TAG, "Response is null");
                 return null;
             }
 
@@ -177,12 +195,12 @@ public class CbrDataManager {
             return (SoapObject) response.getProperty(tableName);
         }
         catch (Exception e) {
-            Log.i("Check_Soap_Service","Exception : " + e.toString());
+            Log.i(LOG_TAG, "Exception: " + e.toString());
             e.printStackTrace();
         }
         finally {
-            Log.i("Check_Soap_Service", "requestDump: " + aht.requestDump);
-            Log.i("Check_Soap_Service", "responseDump: " + aht.responseDump);
+            Log.i(LOG_TAG, "requestDump: " + aht.requestDump);
+            Log.i(LOG_TAG, "responseDump: " + aht.responseDump);
         }
 
         return null;
