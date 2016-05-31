@@ -1,19 +1,20 @@
 <resources>
-    <string name="app_name">7BlankProject</string>
+    <string name="app_name">Курс рубля</string>
     <string name="app_title">Курс рубля</string>
     <string name="action_settings">Настройки</string>
+    <string name="activity_name_exchange_rate_dynamics">Динамика курса рубля</string>
+    <string name="activity_name_news_details">Новости ЦБ РФ</string>
     <string name="main_activity_title">Курс рубля ЦБ РФ</string>
-    <string name="exchange_rate_history_title">Динамика курса рубля (%1$s)</string>
-    <string name="edit_message">Введите сообщение</string>
-    <string name="button_send">Отправить</string>
-    <string name="title_activity_display_message">DisplayMessageActivity</string>
-    <string name="currencies">Валюта</string>
-    <string name="currencies_summary">Выберите валюты</string>
-    <string name="date_interval">Интервал</string>
-    <string name="date_interval_summary">Выберите количество дней</string>
+    <string name="exchange_rate_dynamics_title">Динамика курса рубля (%1$s)</string>
+    <string name="currencies">Список валют</string>
+    <string name="currencies_summary">Выберите интересующие вас валюты</string>
+    <string name="date_interval">Период загрузки данных</string>
+    <string name="date_interval_summary">Выберите период загрузки курсов валют</string>
+    <string name="preferences_error_interval">Настройки не сохранены! Выберите количество дней от %1$d до %2$d</string>
+    <string name="preferences_error_currencies">Настройки не сохранены! Выберите хотя бы одну валюту</string>
+    <string name="preferences_success">Настройки сохранены</string>
     <string-array name="currencies">
         <item>USD</item>
         <item>EUR</item>
     </string-array>
-    <string name="title_activity_exchange_rate_history">ExchangeRateHistoryActivity</string>
 </resources>

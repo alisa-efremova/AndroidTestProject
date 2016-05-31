@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.alice.a7blankproject.adapter.CurrencyInfoAdapter;
-import com.alice.a7blankproject.activity.ExchangeRateHistoryActivity;
+import com.alice.a7blankproject.activity.ExchangeRateDynamicsActivity;
 import com.alice.a7blankproject.model.CbrDataManager;
 import com.alice.a7blankproject.model.CurrencyInfo;
 
@@ -29,6 +29,8 @@ public class CurrentExchangeRatesFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+        PreferenceManager.setDefaultValues(getActivity(), com.alice.a7blankproject.R.xml.preferences, false);
         mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
@@ -40,8 +42,8 @@ public class CurrentExchangeRatesFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         CurrencyInfo currencyInfo = mCurrencies[position];
-        Intent intent = new Intent(getActivity(), ExchangeRateHistoryActivity.class);
-        intent.putExtra(ExchangeRateHistoryActivity.CURRENCY_CODE, currencyInfo.getCode());
+        Intent intent = new Intent(getActivity(), ExchangeRateDynamicsActivity.class);
+        intent.putExtra(ExchangeRateDynamicsActivity.CURRENCY_CODE, currencyInfo.getCode());
         startActivity(intent);
     }
 

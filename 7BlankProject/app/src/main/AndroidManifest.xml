@@ -21,16 +21,16 @@
         </activity>
         <activity
             android:name=".activity.PrefActivity"
-            android:label="Preferences"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/action_settings"
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.ExchangeRateHistoryActivity"
-            android:label="@string/app_title"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".activity.ExchangeRateDynamicsActivity"
+            android:label="@string/activity_name_exchange_rate_dynamics"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".activity.NewsDetailsActivity"
-            android:label="@string/app_title"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/activity_name_news_details"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

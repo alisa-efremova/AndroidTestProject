@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alice.a7blankproject.adapter.RecyclerViewAdapter;
-import com.alice.a7blankproject.activity.ExchangeRateHistoryActivity;
+import com.alice.a7blankproject.activity.ExchangeRateDynamicsActivity;
 import com.alice.a7blankproject.model.CbrDataManager;
 import com.alice.a7blankproject.model.ExchangeRateByDate;
 
@@ -44,11 +44,11 @@ public class ExchangeRateFragment extends Fragment {
 
         Bundle extras = getActivity().getIntent().getExtras();
         if (extras != null) {
-            mCurrencyCode = extras.getString(ExchangeRateHistoryActivity.CURRENCY_CODE);
+            mCurrencyCode = extras.getString(ExchangeRateDynamicsActivity.CURRENCY_CODE);
         }
 
         //todo: move to activity?
-        String title = getResources().getString(com.alice.a7blankproject.R.string.exchange_rate_history_title, mCurrencyCode);
+        String title = getResources().getString(com.alice.a7blankproject.R.string.exchange_rate_dynamics_title, mCurrencyCode);
         TextView textView = (TextView) getActivity().findViewById(com.alice.a7blankproject.R.id.historyTitle);
         textView.setText(title);
     }

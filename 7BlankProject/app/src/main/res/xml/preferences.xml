@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <MultiSelectListPreference
         android:key="currencies"
-        android:summary="@string/currencies"
-        android:title="@string/currencies_summary"
+        android:summary="@string/currencies_summary"
+        android:title="@string/currencies"
         android:entries="@array/currencies"
         android:entryValues="@array/currencies"
         android:defaultValue="@array/currencies" />
