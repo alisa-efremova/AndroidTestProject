@@ -12,6 +12,10 @@ import com.alice.a7blankproject.R;
 import java.util.Set;
 
 public class PrefActivity extends PreferenceActivity {
+    public static final String PREFERENCE_CURRENCIES     = "currencies";
+    public static final String PREFERENCE_PERIOD         = "period";
+    public static final String PREFERENCE_DEFAULT_PERIOD = "7";
+
     private static int MIN_DATE_INTERVAL = 1;
     private static int MAX_DATE_INTERVAL = 30;
 
@@ -30,7 +34,7 @@ public class PrefActivity extends PreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(com.alice.a7blankproject.R.xml.preferences);
 
-            findPreference("period").setOnPreferenceChangeListener(
+            findPreference(PREFERENCE_PERIOD).setOnPreferenceChangeListener(
                     new Preference.OnPreferenceChangeListener() {
 
                 @Override
@@ -52,7 +56,7 @@ public class PrefActivity extends PreferenceActivity {
                 }
             });
 
-            findPreference("currencies").setOnPreferenceChangeListener(
+            findPreference(PREFERENCE_CURRENCIES).setOnPreferenceChangeListener(
                     new Preference.OnPreferenceChangeListener() {
 
                 @Override

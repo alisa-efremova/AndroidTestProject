@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.alice.a7blankproject.activity.PrefActivity;
 import com.alice.a7blankproject.adapter.CurrencyInfoAdapter;
 import com.alice.a7blankproject.activity.ExchangeRateDynamicsActivity;
 import com.alice.a7blankproject.model.CbrDataManager;
@@ -56,7 +57,7 @@ public class CurrentExchangeRatesFragment extends ListFragment {
     class LoadCurrentExchangeRatesTask extends AsyncTask<String, Void, CurrencyInfo[]> {
         @Override
         protected CurrencyInfo[] doInBackground(String... path) {
-            Set<String> preferredCurrencies = mPreferences.getStringSet("currencies", new HashSet<String>());
+            Set<String> preferredCurrencies = mPreferences.getStringSet(PrefActivity.PREFERENCE_CURRENCIES, new HashSet<String>());
 
             List<CurrencyInfo> currencyInfoList = CbrDataManager.getExchangeRatesByDate(new Date(), preferredCurrencies);
             CurrencyInfo[] currencyInfoArray = new CurrencyInfo[currencyInfoList.size()];

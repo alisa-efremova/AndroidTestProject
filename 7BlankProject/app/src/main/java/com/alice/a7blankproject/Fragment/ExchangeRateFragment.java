@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alice.a7blankproject.activity.PrefActivity;
 import com.alice.a7blankproject.adapter.RecyclerViewAdapter;
 import com.alice.a7blankproject.activity.ExchangeRateDynamicsActivity;
 import com.alice.a7blankproject.model.CbrDataManager;
@@ -66,7 +67,7 @@ public class ExchangeRateFragment extends Fragment {
         protected List<ExchangeRateByDate> doInBackground(String... path) {
             List<String> currencies = Arrays.asList(getResources().getStringArray(com.alice.a7blankproject.R.array.currencies));
             CbrDataManager cbr = new CbrDataManager(currencies);
-            int period = Integer.valueOf(mPreferences.getString("period", "7"));
+            int period = Integer.valueOf(mPreferences.getString(PrefActivity.PREFERENCE_PERIOD, PrefActivity.PREFERENCE_DEFAULT_PERIOD));
             return cbr.getExchangeRatesByDateInterval(mCurrencyCode, new Date(), period);
         }
 
