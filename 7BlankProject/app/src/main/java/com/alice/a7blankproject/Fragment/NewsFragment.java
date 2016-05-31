@@ -1,4 +1,4 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,9 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.alice.a7blankproject.Model.CbrDataManager;
-import com.alice.a7blankproject.Model.News;
-import com.alice.a7blankproject.Util.TimeUtils;
+import com.alice.a7blankproject.adapter.NewsAdapter;
+import com.alice.a7blankproject.model.CbrDataManager;
+import com.alice.a7blankproject.model.News;
+import com.alice.a7blankproject.util.TimeUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mView = inflater.inflate(R.layout.fragment_news_list, container, false);
+        mView = inflater.inflate(com.alice.a7blankproject.R.layout.fragment_news_list, container, false);
         new LoadNewsTask().execute();
         return mView;
     }

@@ -1,6 +1,6 @@
-package com.alice.a7blankproject.Model;
+package com.alice.a7blankproject.model;
 
-import com.alice.a7blankproject.Util.TimeUtils;
+import com.alice.a7blankproject.util.TimeUtils;
 
 import java.util.Date;
 

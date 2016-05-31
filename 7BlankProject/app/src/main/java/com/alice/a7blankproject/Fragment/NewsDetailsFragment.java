@@ -1,4 +1,4 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/exchangeRateFragment"
-            android:name="com.alice.a7blankproject.CurrentExchangeRatesFragment"
+            android:name="com.alice.a7blankproject.fragment.CurrentExchangeRatesFragment"
             />
 
         <TextView
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/newsFragment"
-            android:name="com.alice.a7blankproject.NewsFragment"
+            android:name="com.alice.a7blankproject.fragment.NewsFragment"
             />
     </LinearLayout>
 

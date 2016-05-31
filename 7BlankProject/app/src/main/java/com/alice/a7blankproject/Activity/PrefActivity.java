@@ -1,4 +1,4 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.activity;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -25,7 +25,7 @@ public class PrefActivity extends PreferenceActivity {
         public void onCreate(final Bundle savedInstanceState)
         {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.preferences);
+            addPreferencesFromResource(com.alice.a7blankproject.R.xml.preferences);
         }
     }
 }

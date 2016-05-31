@@ -1,4 +1,4 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.adapter;
 
         import android.content.Context;
         import android.content.Intent;
@@ -7,11 +7,12 @@ package com.alice.a7blankproject;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
-        import android.widget.AdapterView;
         import android.widget.TextView;
 
-        import com.alice.a7blankproject.Model.News;
-        import com.alice.a7blankproject.Util.TimeUtils;
+        import com.alice.a7blankproject.model.News;
+        import com.alice.a7blankproject.activity.NewsDetailsActivity;
+        import com.alice.a7blankproject.fragment.NewsDetailsFragment;
+        import com.alice.a7blankproject.util.TimeUtils;
 
         import java.util.List;
 
@@ -21,7 +22,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ListItemViewHo
     private SparseBooleanArray mSelectedItems;
     private Context mContext;
 
-    NewsAdapter(List<News> modelData, Context context) {
+    public NewsAdapter(List<News> modelData, Context context) {
         if (modelData == null) {
             throw new IllegalArgumentException("modelData must not be null");
         }
@@ -34,7 +35,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ListItemViewHo
     public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.fragment_news_list_item, viewGroup, false);
+                inflate(com.alice.a7blankproject.R.layout.fragment_news_list_item, viewGroup, false);
 
         return new ListItemViewHolder(itemView);
     }
@@ -68,8 +69,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ListItemViewHo
 
         public ListItemViewHolder(View itemView) {
             super(itemView);
-            date  = (TextView) itemView.findViewById(R.id.date);
-            title = (TextView) itemView.findViewById(R.id.title);
+            date  = (TextView) itemView.findViewById(com.alice.a7blankproject.R.id.date);
+            title = (TextView) itemView.findViewById(com.alice.a7blankproject.R.id.title);
         }
     }
 }

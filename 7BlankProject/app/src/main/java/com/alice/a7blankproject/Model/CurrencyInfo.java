@@ -1,4 +1,4 @@
-package com.alice.a7blankproject.Model;
+package com.alice.a7blankproject.model;
 
 public class CurrencyInfo {
     private String code;

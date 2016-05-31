@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_title"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,15 +20,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PrefActivity"
+            android:name=".activity.PrefActivity"
             android:label="Preferences"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ExchangeRateHistoryActivity"
+            android:name=".activity.ExchangeRateHistoryActivity"
             android:label="@string/app_title"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".NewsDetailsActivity"
+            android:name=".activity.NewsDetailsActivity"
             android:label="@string/app_title"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>

@@ -1,4 +1,4 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.alice.a7blankproject.Model.ExchangeRateByDate;
-import com.alice.a7blankproject.Util.TimeUtils;
+import com.alice.a7blankproject.model.ExchangeRateByDate;
+import com.alice.a7blankproject.util.TimeUtils;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<ExchangeRateByDate> mItems;
     private SparseBooleanArray mSelectedItems;
 
-    RecyclerViewAdapter(List<ExchangeRateByDate> modelData) {
+    public RecyclerViewAdapter(List<ExchangeRateByDate> modelData) {
         if (modelData == null) {
             throw new IllegalArgumentException("modelData must not be null");
         }
@@ -29,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.fragment_exchange_rate_list_item, viewGroup, false);
+                inflate(com.alice.a7blankproject.R.layout.fragment_exchange_rate_list_item, viewGroup, false);
         return new ListItemViewHolder(itemView);
     }
 
@@ -52,8 +52,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ListItemViewHolder(View itemView) {
             super(itemView);
-            date         = (TextView) itemView.findViewById(R.id.date);
-            exchangeRate = (TextView) itemView.findViewById(R.id.exchange_rate);
+            date         = (TextView) itemView.findViewById(com.alice.a7blankproject.R.id.date);
+            exchangeRate = (TextView) itemView.findViewById(com.alice.a7blankproject.R.id.exchange_rate);
         }
     }
 }

@@ -1,8 +1,8 @@
-package com.alice.a7blankproject.Model;
+package com.alice.a7blankproject.model;
 
 import android.util.Log;
 
-import com.alice.a7blankproject.Util.TimeUtils;
+import com.alice.a7blankproject.util.TimeUtils;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;

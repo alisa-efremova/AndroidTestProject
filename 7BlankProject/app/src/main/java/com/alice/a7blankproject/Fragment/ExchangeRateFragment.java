@@ -1,4 +1,4 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.fragment;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alice.a7blankproject.Model.CbrDataManager;
-import com.alice.a7blankproject.Model.ExchangeRateByDate;
+import com.alice.a7blankproject.adapter.RecyclerViewAdapter;
+import com.alice.a7blankproject.activity.ExchangeRateHistoryActivity;
+import com.alice.a7blankproject.model.CbrDataManager;
+import com.alice.a7blankproject.model.ExchangeRateByDate;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,6 +35,7 @@ public class ExchangeRateFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
     @Override
@@ -41,21 +44,19 @@ public class ExchangeRateFragment extends Fragment {
 
         Bundle extras = getActivity().getIntent().getExtras();
         if (extras != null) {
-            mCurrencyCode = extras.getString(CurrentExchangeRatesFragment.CURRENCY_CODE);
+            mCurrencyCode = extras.getString(ExchangeRateHistoryActivity.CURRENCY_CODE);
         }
 
         //todo: move to activity?
-        String title = getResources().getString(R.string.exchange_rate_history_title, mCurrencyCode);
-        TextView textView = (TextView) getActivity().findViewById(R.id.historyTitle);
+        String title = getResources().getString(com.alice.a7blankproject.R.string.exchange_rate_history_title, mCurrencyCode);
+        TextView textView = (TextView) getActivity().findViewById(com.alice.a7blankproject.R.id.historyTitle);
         textView.setText(title);
-
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mView = inflater.inflate(R.layout.fragment_exchange_rate_list, container, false);
+        mView = inflater.inflate(com.alice.a7blankproject.R.layout.fragment_exchange_rate_list, container, false);
         new LoadCurrentExchangeRatesTask().execute();
         return mView;
     }
@@ -63,7 +64,7 @@ public class ExchangeRateFragment extends Fragment {
     class LoadCurrentExchangeRatesTask extends AsyncTask<String, Void, List<ExchangeRateByDate>> {
         @Override
         protected List<ExchangeRateByDate> doInBackground(String... path) {
-            List<String> currencies = Arrays.asList(getResources().getStringArray(R.array.currencies));
+            List<String> currencies = Arrays.asList(getResources().getStringArray(com.alice.a7blankproject.R.array.currencies));
             CbrDataManager cbr = new CbrDataManager(currencies);
             int period = Integer.valueOf(mPreferences.getString("period", "7"));
             return cbr.getExchangeRatesByDateInterval(mCurrencyCode, new Date(), period);

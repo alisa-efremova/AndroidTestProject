@@ -1,4 +1,4 @@
-package com.alice.a7blankproject;
+package com.alice.a7blankproject.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,15 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.alice.a7blankproject.Model.CurrencyInfo;
+import com.alice.a7blankproject.model.CurrencyInfo;
 
-class CurrencyInfoAdapter extends ArrayAdapter<CurrencyInfo> {
+public class CurrencyInfoAdapter extends ArrayAdapter<CurrencyInfo> {
 
     private LayoutInflater mInflater;
     private CurrencyInfo[] mCurrencies;
 
-    CurrencyInfoAdapter(CurrencyInfo[] list, Context context) {
-        super(context, R.layout.fragment_current_exchange_rates, list);
+    public CurrencyInfoAdapter(CurrencyInfo[] list, Context context) {
+        super(context, com.alice.a7blankproject.R.layout.fragment_current_exchange_rates, list);
         mInflater = LayoutInflater.from(context);
         mCurrencies = list;
     }
@@ -25,10 +25,10 @@ class CurrencyInfoAdapter extends ArrayAdapter<CurrencyInfo> {
         ViewHolder holder;
         View row = convertView;
         if (row == null) {
-            row = mInflater.inflate(R.layout.fragment_current_exchange_rates, parent, false);
+            row = mInflater.inflate(com.alice.a7blankproject.R.layout.fragment_current_exchange_rates, parent, false);
             holder = new ViewHolder();
-            holder.nameView = (TextView) row.findViewById(R.id.currency_name);
-            holder.exchangeRateView = (TextView) row.findViewById(R.id.exchange_rate);
+            holder.nameView = (TextView) row.findViewById(com.alice.a7blankproject.R.id.currency_name);
+            holder.exchangeRateView = (TextView) row.findViewById(com.alice.a7blankproject.R.id.exchange_rate);
             row.setTag(holder);
         }
         else {

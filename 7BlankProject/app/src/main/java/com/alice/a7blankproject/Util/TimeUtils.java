@@ -1,4 +1,4 @@
-package com.alice.a7blankproject.Util;
+package com.alice.a7blankproject.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
